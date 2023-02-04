@@ -45,7 +45,6 @@
         const pixel = ctx.getImageData(x, y, 1, 1).data;
         const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, 1)`;
 
-          255})`;
         rgbaValue.textContent = rgba;
         colorDisplay.style.backgroundColor = rgba;
       });
