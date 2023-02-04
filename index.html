@@ -3,7 +3,8 @@
   <head>
     <style>
       canvas {
-        border: 1px solid black;
+        max-width: 100%;
+        max-height: 100%;
       }
       #color-display {
         width: 50px;
@@ -34,7 +35,7 @@
         img.onload = () => {
           canvas.width = img.width;
           canvas.height = img.height;
-          ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         };
       });
 
