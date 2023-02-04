@@ -43,7 +43,8 @@
         const x = e.offsetX;
         const y = e.offsetY;
         const pixel = ctx.getImageData(x, y, 1, 1).data;
-        const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${pixel[3] /
+        const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, 1)`;
+
           255})`;
         rgbaValue.textContent = rgba;
         colorDisplay.style.backgroundColor = rgba;
