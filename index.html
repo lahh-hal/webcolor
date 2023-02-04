@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+      #color-display {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" id="fileInput">
+    <canvas id="canvas"></canvas>
+    <div>
+      RGBA: <span id="rgba-value">(?, ?, ?, ?)</span>
+    </div>
+    <div id="color-display"></div>
+
+    <script>
+      const fileInput = document.getElementById("fileInput");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const rgbaValue = document.getElementById("rgba-value");
+      const colorDisplay = document.getElementById("color-display");
+
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+        };
+      });
+
+      canvas.addEventListener("click", (e) => {
+        const x = e.offsetX;
+        const y = e.offsetY;
+        const pixel = ctx.getImageData(x, y, 1, 1).data;
+        const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${pixel[3] /
+          255})`;
+        rgbaValue.textContent = rgba;
+        colorDisplay.style.backgroundColor = rgba;
+      });
+    </script>
+  </body>
+</html>
