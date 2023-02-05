@@ -3,8 +3,7 @@
   <head>
     <style>
       canvas {
-        max-width: 100%;
-        max-height: 100%;
+        border: 1px solid black;
       }
       #color-display {
         width: 50px;
@@ -35,7 +34,7 @@
         img.onload = () => {
           canvas.width = img.width;
           canvas.height = img.height;
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
         };
       });
 
@@ -43,8 +42,8 @@
         const x = e.offsetX;
         const y = e.offsetY;
         const pixel = ctx.getImageData(x, y, 1, 1).data;
-        const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, 1)`;
-
+        const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${pixel[3] /
+          255})`;
         rgbaValue.textContent = rgba;
         colorDisplay.style.backgroundColor = rgba;
       });
